@@ -1,0 +1,15 @@
+name: MinecraftWebhook
+version: '1.0'
+main: com.minecraft.webhook.MinecraftWebhook
+api-version: '1.13'
+description: 发送玩家事件到webhook地址
+author: Manus
+commands:
+  webhook:
+    description: MinecraftWebhook插件命令
+    usage: /webhook reload - 重新加载配置文件
+    permission: minecraftwebhook.admin
+permissions:
+  minecraftwebhook.admin:
+    description: 允许使用MinecraftWebhook管理命令
+    default: op

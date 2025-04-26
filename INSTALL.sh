@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# 安装说明
+echo "=== MinecraftWebhook 插件安装指南 ==="
+echo ""
+echo "1. 确保您的服务器已安装 Spigot 或 Paper"
+echo "2. 确保您的服务器 Java 版本为 11 或更高"
+echo "3. 按照以下步骤编译和安装插件:"
+echo ""
+echo "# 编译插件"
+echo "cd MinecraftWebhookPlugin"
+echo "mvn clean package"
+echo ""
+echo "# 安装插件"
+echo "cp target/webhook-1.0-SNAPSHOT.jar 您的服务器plugins目录/"
+echo ""
+echo "# 重启服务器或使用插件管理器加载插件"
+echo ""
+echo "4. 编辑 plugins/MinecraftWebhook/config.yml 文件配置您的webhook地址"
+echo ""
+echo "如有问题，请参考 README.md 文件获取更多信息"

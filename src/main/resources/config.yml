@@ -1,0 +1,44 @@
+# 配置文件
+# 插件版本: 1.0
+
+# Webhook设置
+webhook:
+  # Webhook URL地址
+  url: "https://example.com/webhook"
+  # 是否启用插件
+  enabled: true
+  # 连接超时时间(毫秒)
+  timeout: 5000
+  # 重试次数
+  retry-count: 3
+  # 重试间隔(毫秒)
+  retry-delay: 2000
+
+# 事件设置
+events:
+  # 玩家登录事件
+  login:
+    enabled: true
+    # 自定义消息模板
+    message: "%player% 登录了服务器"
+  
+  # 玩家离开事件
+  quit:
+    enabled: true
+    message: "%player% 离开了服务器"
+  
+  # 玩家死亡事件
+  death:
+    enabled: true
+    message: "%player% 死亡了"
+
+# 日志设置
+logging:
+  # 是否启用日志
+  enabled: true
+  # 日志级别: INFO, WARNING, ERROR, DEBUG
+  level: "INFO"
+  # 是否记录成功的webhook调用
+  log-success: true
+  # 是否记录失败的webhook调用
+  log-failure: true
