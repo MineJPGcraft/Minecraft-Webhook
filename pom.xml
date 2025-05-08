@@ -6,7 +6,7 @@
 
     <groupId>com.minecraft.webhook</groupId>
     <artifactId>MinecraftWebhook</artifactId>
-    <version>1.0</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <name>MinecraftWebhook</name>
@@ -25,14 +25,12 @@
     </repositories>
 
     <dependencies>
-        <!-- 主要依赖 Spigot 1.21 -->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.21-R0.1-SNAPSHOT</version>
+            <version>1.21-R0.1-SNAPSHOT</version> 
             <scope>provided</scope>
         </dependency>
-        <!-- JSON 库 -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
@@ -81,3 +79,4 @@
         </plugins>
     </build>
 </project>
+

@@ -4,6 +4,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.Location;
@@ -84,6 +86,48 @@ public class EventListener implements Listener {
             plugin.log(Level.INFO, "玩家 " + player.getName() + " 死亡事件已发送到Webhook");
         }
     }
+
+    /**
+     * 监听玩家聊天事件
+     */
+    @EventHandler
+    public void onPlayerChat(AsyncPlayerChatEvent event) {
+        if (configManager.isEventEnabled("chat")) {
+            Player player = event.getPlayer();
+            String chatMessage = event.getMessage();
+            String formattedMessage = configManager.getEventMessage("chat")
+                                            .replace("%player%", player.getName())
+                                            .replace("%message%", chatMessage);
+
+            Map<String, Object> data = createBasePlayerData(player, "chat");
+            data.put("message", formattedMessage); // User-defined formatted message
+            data.put("chat_message", chatMessage); // Raw chat message
+            
+            webhookSender.sendWebhook(data);
+            plugin.log(Level.INFO, "玩家 " + player.getName() + " 聊天事件已发送到Webhook: " + chatMessage);
+        }
+    }
+
+    /**
+     * 监听玩家指令事件
+     */
+    @EventHandler
+    public void onPlayerCommand(PlayerCommandPreprocessEvent event) {
+        if (configManager.isEventEnabled("command")) {
+            Player player = event.getPlayer();
+            String commandMessage = event.getMessage();
+            String formattedMessage = configManager.getEventMessage("command")
+                                             .replace("%player%", player.getName())
+                                             .replace("%command%", commandMessage);
+
+            Map<String, Object> data = createBasePlayerData(player, "command");
+            data.put("message", formattedMessage); // User-defined formatted message
+            data.put("command_string", commandMessage); // Raw command string
+            
+            webhookSender.sendWebhook(data);
+            plugin.log(Level.INFO, "玩家 " + player.getName() + " 指令事件已发送到Webhook: " + commandMessage);
+        }
+    }
     
     /**
      * 创建基础玩家数据
@@ -119,3 +163,4 @@ public class EventListener implements Listener {
         return data;
     }
 }
+

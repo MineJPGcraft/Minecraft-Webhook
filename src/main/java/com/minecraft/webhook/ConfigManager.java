@@ -1,6 +1,9 @@
 package com.minecraft.webhook;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.logging.Level;
 
 /**
@@ -29,10 +32,21 @@ public class ConfigManager {
     }
     
     /**
-     * 获取Webhook URL
+     * 获取Webhook URL列表
+     * 支持单个URL字符串或URL列表
      */
-    public String getWebhookUrl() {
-        return config.getString("webhook.url", "https://example.com/webhook");
+    public List<String> getWebhookUrls() {
+        if (config.isList("webhook.urls")) {
+            return config.getStringList("webhook.urls");
+        } else if (config.isString("webhook.url")) {
+            // For backward compatibility with old single webhook.url
+            return Collections.singletonList(config.getString("webhook.url"));
+        } else if (config.isString("webhook.urls")) {
+            // Handle case where webhook.urls might be a single string by mistake
+             return Collections.singletonList(config.getString("webhook.urls"));
+        }
+        // Default or if no valid URL config is found
+        return Collections.singletonList("https://example.com/webhook"); 
     }
     
     /**
@@ -111,3 +125,4 @@ public class ConfigManager {
         return config.getBoolean("logging.log-failure", true);
     }
 }
+
