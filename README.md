@@ -180,10 +180,10 @@ logging:
 3.  运行 `mvn clean package`。
 4.  编译后的插件将位于 `target` 目录中。
 
-## 作者
+## 开发者
 
-WindyPear-Team
+FireGuo from WindyPear-Team & MCJPG
 
 ## 许可证
 
-此插件使用 MIT 许可证。
+此插件使用 MIT 许可证，可任意修改、分发或商业使用，请附上原作者信息。
